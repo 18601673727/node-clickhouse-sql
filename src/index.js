@@ -11,7 +11,8 @@ const LTE = LESS_OR_EQUALS;
 const NOT_EQUALS = "!=";
 const NE = NOT_EQUALS;
 const BETWEEN = "between";
-const AND = 'and'
+const AND = 'and';
+const LIKE = 'like';
 
 const Consts = {
   EQUALS,
@@ -26,6 +27,7 @@ const Consts = {
   LT,
   LTE,
   NE,
+  LIKE,
 };
 
 class SQLObject {
@@ -288,7 +290,8 @@ const AggregateFunctions = {
   uniqHLL12: _curry_f('uniqHLL12'),
   uniqExact: _curry_f('uniqExact'),
   groupArray: _curry_f('groupArray'),
-  groupUniqArray: _curry_f('groupUniqArray')
+  groupUniqArray: _curry_f('groupUniqArray'),
+  concat: _curry_f('concat')
 };
 
 const ArithmeticFunctions = {
