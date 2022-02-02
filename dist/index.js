@@ -53,6 +53,7 @@ var NOT_EQUALS = "!=";
 var NE = NOT_EQUALS;
 var BETWEEN = "between";
 var AND = 'and';
+var LIKE = 'like';
 var Consts = {
   EQUALS: EQUALS,
   GREATER: GREATER,
@@ -65,7 +66,8 @@ var Consts = {
   GTE: GTE,
   LT: LT,
   LTE: LTE,
-  NE: NE
+  NE: NE,
+  LIKE: LIKE
 };
 
 var SQLObject = function SQLObject() {
@@ -233,6 +235,11 @@ var InclusionOperator = /*#__PURE__*/function (_Condition2) {
   _createClass(InclusionOperator, [{
     key: "toString",
     value: function toString() {
+      // Escape join() for expression-type value
+      if (typeof this.value === "string" && this.value.startsWith("select")) {
+        return "".concat(quoteTerm(this.column), " ").concat(this.operator, " (").concat(this.value, ")");
+      }
+
       return [quoteTerm(this.column), " ", this.operator, " (", Array.isArray(this.value) ? this.value.map(function (val) {
         return quoteVal(val);
       }).join(',') : this.value, ")"].join('');
@@ -546,7 +553,8 @@ var AggregateFunctions = {
   uniqHLL12: _curry_f('uniqHLL12'),
   uniqExact: _curry_f('uniqExact'),
   groupArray: _curry_f('groupArray'),
-  groupUniqArray: _curry_f('groupUniqArray')
+  groupUniqArray: _curry_f('groupUniqArray'),
+  concat: _curry_f('concat')
 };
 var ArithmeticFunctions = {
   plus: _curry_f('plus'),

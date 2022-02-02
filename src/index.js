@@ -107,6 +107,11 @@ class InclusionOperator extends Condition {
   }
 
   toString() {
+    // Escape join() for expression-type value
+    if (typeof this.value === "string" && this.value.startsWith("select")) {
+      return `${quoteTerm(this.column)} ${this.operator} (${this.value})`;
+    }
+
     return [
       quoteTerm(this.column),
       " ",
@@ -146,11 +151,11 @@ class GlobalIn extends InclusionOperator {
 
 class Between extends SQLObject {
   constructor(column, leftBoundary, rightBoundary) {
-      super();
-      this.column = column;
+    super();
+    this.column = column;
 
-      this.leftBoundary = leftBoundary;
-      this.rightBoundary = rightBoundary;
+    this.leftBoundary = leftBoundary;
+    this.rightBoundary = rightBoundary;
   }
   quoteBoundary(b) {
     return b instanceof SQLObject ? b.toString() : quoteVal(b);
@@ -203,7 +208,7 @@ let commonReplacer = [
         return "\\t";
       case "\\":
         return "\\\\";
-      case "\x1a" :
+      case "\x1a":
         return "\\Z";
       default:
         console.error("uncovered case in replacer:", s); return ''; //logic error

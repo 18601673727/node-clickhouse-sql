@@ -1,6 +1,6 @@
 {
-  "name": "clickhouse-sql",
-  "version": "1.2.2",
+  "name": "clickhouse-sql-fork",
+  "version": "0.0.2",
   "description": "Yandex Clickhouse SQL Dialect interface",
   "main": "index.js",
   "jsnext:main": "src/index.js",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:mbIkola/node-clickhouse-sql.git"
+    "url": "git@github.com:18601673727/node-clickhouse-sql.git"
   },
   "keywords": [
     "clickhouse",
