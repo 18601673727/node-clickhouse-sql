@@ -1,6 +1,6 @@
 {
   "name": "clickhouse-sql-fork",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Yandex Clickhouse SQL Dialect interface",
   "main": "index.js",
   "jsnext:main": "src/index.js",

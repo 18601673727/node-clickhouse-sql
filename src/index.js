@@ -108,8 +108,8 @@ class InclusionOperator extends Condition {
 
   toString() {
     // Escape join() for expression-type value
-    if (typeof this.value === "string" && this.value.startsWith("select")) {
-      return `${quoteTerm(this.column)} ${this.operator} (${this.value})`;
+    if (typeof this.value === "object" && typeof this.value.value === "string" && this.value.value.startsWith("select")) {
+      return `${quoteTerm(this.column)} ${this.operator} (${this.value.value})`;
     }
 
     return [
